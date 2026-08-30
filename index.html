@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OhmaShop! - Digital & Academic Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --surface-color: rgba(31, 40, 51, 0.6);
+            --primary-neon: #66fcf1;
+            --secondary-neon: #45a29e;
+            --text-main: #c5c6c7;
+            --text-light: #ffffff;
+            --alert-neon: #ffde00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            background-image: radial-gradient(circle at 50% 0%, #1a2639 0%, transparent 50%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--text-light);
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-bottom: 1px solid rgba(102, 252, 241, 0.2);
+            background: linear-gradient(180deg, rgba(10,11,15,0.8) 0%, rgba(11,12,16,0) 100%);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--primary-neon), 0 0 20px var(--secondary-neon);
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        /* Videotron Section */
+        .videotron-container {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-top: 2px solid var(--primary-neon);
+            border-bottom: 2px solid var(--primary-neon);
+            overflow: hidden;
+            padding: 12px 0;
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.2);
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .videotron-text {
+            display: inline-block;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--alert-neon);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px var(--alert-neon), 0 0 15px #ff9900;
+            padding-left: 100%;
+            animation: scroll-left 25s linear infinite;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Katalog Section */
+        .katalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--surface-color);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 252, 241, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-neon);
+            box-shadow: 0 5px 20px rgba(102, 252, 241, 0.15);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-neon);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .card ul {
+            list-style: none;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .card ul li::before {
+            content: "▹";
+            color: var(--primary-neon);
+            margin-right: 8px;
+        }
+
+        .price-highlight {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* Kasir Section */
+        .kasir-section {
+            background: var(--surface-color);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(102, 252, 241, 0.3);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .kasir-section h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 5px var(--primary-neon);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        select, input {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--secondary-neon);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
+        }
+
+        .dynamic-inputs {
+            display: none;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 3px solid var(--primary-neon);
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            color: var(--primary-neon);
+            border: 2px solid var(--primary-neon);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: var(--primary-neon);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+        }
+
+        .btn-wa {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            margin-top: 2rem;
+        }
+
+        .btn-wa:hover {
+            background: linear-gradient(45deg, #128C7E, #25D366);
+            color: white;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+        }
+
+        #total-display {
+            font-size: 2rem;
+            font-family: 'Rajdhani', sans-serif;
+            text-align: right;
+            color: var(--primary-neon);
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .payment-info {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>OhmaShop!</h1>
+        <p>Digital Services, Academic Solutions & Game Provider</p>
+    </header>
+
+    <div class="videotron-container">
+        <div class="videotron-text">
+            ⚡ PENGUMUMAN: Setiap Hari Jumat Free Biaya Cover Makalah Baik Itu Print Maupun Halamannya ⚡
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="katalog-grid">
+            <div class="card">
+                <h3>⚡ Digital Top-Up</h3>
+                <ul>
+                    <li>Token Listrik (Proses Cepat)</li>
+                    <li>Pulsa All Operator</li>
+                    <li>Paket Data Internet</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>📚 Joki Akademik</h3>
+                <ul>
+                    <li>Pembuatan Jurnal & Resume</li>
+                    <li>Makalah: <span class="price-highlight">Rp 2.500/hal</span></li>
+                    <li><i>*Gratis 3 Referensi</i></li>
+                    <li>Tambah Referensi: <span class="price-highlight">Rp 500/ref</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🖨️ Jasa Print</h3>
+                <ul>
+                    <li>Print Hitam Putih: <span class="price-highlight">Rp 1.000/lbr</span></li>
+                    <li>Print Warna: <span class="price-highlight">Rp 2.000/lbr</span></li>
+                    <li>Print Cover Makalah: <span class="price-highlight">Rp 1.500/lbr</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🎮 Joki Game (Daily & Event)</h3>
+                <ul>
+                    <li>Genshin Impact (Eksplorasi, Quest, Daily)</li>
+                    <li>Honkai: Star Rail (Simulated Universe, Event)</li>
+                    <li>Harga menyesuaikan tingkat kesulitan.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="kasir-section" id="kasir">
+            <h2>🛒 Terminal Kasir</h2>
+            
+            <div class="form-group">
+                <label for="layanan">Pilih Layanan</label>
+                <select id="layanan" onchange="showInputs()">
+                    <option value="">-- Silakan Pilih --</option>
+                    <option value="makalah">Joki Makalah</option>
+                    <option value="print">Jasa Print</option>
+                    <option value="lainnya">Top-up / Joki Game / Jurnal (Chat Admin)</option>
+                </select>
+            </div>
+
+            <div id="input-makalah" class="dynamic-inputs">
+                <div class="form-group">
+                    <label>Jumlah Halaman (Rp 2.500/hal)</label>
+                    <input type="number" id="qty-halaman" min="1" value="1" oninput="hitungTotal()">
+                </div>
+                <div class="form-group">
+                    <label>Tambahan Referensi (Rp 500/ref) *3 Ref Pertama GRATIS</label>
+                    <input type="number" id="qty-ref" min="0" value="0" oninput="hitungTotal()">
+                </div>
+            </div>
+
+            <div id="input-print" class="dynamic-inputs">
+                <div class="form-group">
+                    <label>Jumlah Print Hitam Putih (Rp 1.000/lbr)</label>
+                    <input type="number" id="qty-bw" min="0" value="0" oninput="hitungTotal()">
+                </div>
+                <div class="form-group">
+                    <label>Jumlah Print Warna (Rp 2.000/lbr)</label>
+                    <input type="number" id="qty-warna" min="0" value="0" oninput="hitungTotal()">
+                </div>
+                <div class="form-group">
+                    <label>Jumlah Cover Makalah (Rp 1.500/lbr)</label>
+                    <input type="number" id="qty-cover" min="0" value="0" oninput="hitungTotal()">
+                </div>
+            </div>
+
+            <div id="total-display">Total: Rp 0</div>
+            
+            <p class="payment-info">Opsi Pembayaran: DANA / OVO / GoPay / ShopeePay / Transfer Bank</p>
+
+            <button class="btn-wa" onclick="checkoutWA()">Gabung Grup WA & Pesan Sekarang</button>
+        </div>
+    </div>
+
+    <script>
+        let totalHarga = 0;
+        let detailPesanan = "";
+
+        function showInputs() {
+            const layanan = document.getElementById("layanan").value;
+            document.getElementById("input-makalah").style.display = "none";
+            document.getElementById("input-print").style.display = "none";
+            
+            if (layanan === "makalah") {
+                document.getElementById("input-makalah").style.display = "block";
+            } else if (layanan === "print") {
+                document.getElementById("input-print").style.display = "block";
+            }
+            hitungTotal();
+        }
+
+        function hitungTotal() {
+            const layanan = document.getElementById("layanan").value;
+            totalHarga = 0;
+            detailPesanan = "";
+
+            if (layanan === "makalah") {
+                const halaman = parseInt(document.getElementById("qty-halaman").value) || 0;
+                const ref = parseInt(document.getElementById("qty-ref").value) || 0;
+                totalHarga = (halaman * 2500) + (ref * 500);
+                detailPesanan = `Joki Makalah: ${halaman} Halaman, Tambah ${ref} Referensi.`;
+            } 
+            else if (layanan === "print") {
+                const bw = parseInt(document.getElementById("qty-bw").value) || 0;
+                const warna = parseInt(document.getElementById("qty-warna").value) || 0;
+                const cover = parseInt(document.getElementById("qty-cover").value) || 0;
+                
+                // Logika: Jika hari ini Jumat, cover gratis (opsional, tapi sebagai pengingat saat checkout)
+                const today = new Date().getDay();
+                let coverPrice = (today === 5) ? 0 : 1500; // 5 adalah hari Jumat
+                
+                totalHarga = (bw * 1000) + (warna * 2000) + (cover * coverPrice);
+                
+                let infoCover = (today === 5 && cover > 0) ? `${cover} Cover (GRATIS JUMAT)` : `${cover} Cover`;
+                detailPesanan = `Print: ${bw} Hitam Putih, ${warna} Warna, ${infoCover}.`;
+            }
+            else if (layanan === "lainnya") {
+                detailPesanan = "Layanan Khusus (Perlu diskusi via WA)";
+            }
+
+            document.getElementById("total-display").innerText = "Total: Rp " + totalHarga.toLocaleString('id-ID');
+        }
+
+        function checkoutWA() {
+            const layanan = document.getElementById("layanan").value;
+            if (!layanan) {
+                alert("Paduka, silakan pilih layanan terlebih dahulu ya!");
+                return;
+            }
+
+            let text = `Halo OhmaShop! Saya ingin pesan:\n\n*Detail:* ${detailPesanan}\n*Estimasi Total:* Rp ${totalHarga.toLocaleString('id-ID')}\n\nMohon info pembayaran dan proses selanjutnya.`;
+            
+            const groupLink = "https://chat.whatsapp.com/GzBM6iq836J2fcD6ct2vD5";
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Detail pesanan berhasil disalin! Mengalihkan ke Grup WhatsApp OhmaShop! Silakan 'Paste' pesan di dalam grup/ke Admin.");
+                window.open(groupLink, "_blank");
+            }).catch(err => {
+                window.open(groupLink, "_blank");
+            });
+        }
+    </script>
+</body>
+</html>
